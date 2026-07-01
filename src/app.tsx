@@ -141,21 +141,20 @@ export default function App() {
     );
   };
 
-  const pause_icons = started && (
-    <>
+  const pause_icons = (
+    <button
+      className={classNames({ "invisible pointer-events-none": !started })}
+      disabled={!started}
+      aria-label={paused ? "Resume clock" : "Pause clock"}
+      onClick={() => { setPaused(!paused) }}
+    >
       {
         paused ?
-          <button onClick={() => { setPaused(false) }} aria-label="Resume clock">
-            < PlayIcon className='w-16 bg-neutral-600 rounded-lg' />
-          </button >
+          <PlayIcon className='w-16 bg-neutral-600 rounded-lg' />
           :
-          <button aria-label="Pause clock" onClick={() => {
-            setPaused(true)
-          }}>
-            <PauseIcon className='w-16 bg-neutral-600 rounded-lg' />
-          </button>
+          <PauseIcon className='w-16 bg-neutral-600 rounded-lg' />
       }
-    </>
+    </button>
   )
 
   const reset = () => {
